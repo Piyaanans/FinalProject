@@ -7,14 +7,14 @@
 <center><img src="images/logo.jpg" width="400" /></center>
 
 <table class="table">
-    <thread>
+    <thead>
         <tr>
             <th>From</th>
             <th>Subject</th>
             <th>Date/Time</th>
             <th>Delete</th>
         </tr>
-    </thread>
+    </thead>
 
     <tbody>
         @foreach (var item in Model.listEmails)
@@ -22,16 +22,31 @@
             <tr>
                 <td>@item.EmailSender</td>
                 <td>
-                    @if (item.EmailIsRead.Equals("0")) {
-                        <img src="images/yellow.gif" height="10pt"> 
-                    } 
-                    <a href="ReadEmail?emailid=@item.EmailID">@item.EmailSubject</a></td>
+                    @if (item.EmailIsRead == "0")
+                    {
+                        <img src="images/yellow.gif" height="10pt">
+                    } else
+                    {
+                        <img src="images/Red.png" height="10pt">
+                    }
+                    <a href="ReadEmail?emailid=@item.EmailID">@item.EmailSubject</a>
+                </td>
                 <td>@item.EmailDate</td>
                 <td>
-                    <a class="btn btn-primary btn-sm" href="DeleteEmail?emailid=@item.EmailID">Delete</a>
+                    <button class="btn btn-primary btn-sm" onclick="confirmDelete('@item.EmailID')">Delete</button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<a class="btn btn-primary btn-sm" href="/ComposeMail?Sender=@User.Identity.Name">Compose New Email</a>
+<a class="btn btn-primary btn-sm" href="/CreateComposemail?Sender=@User.Identity.Name">Compose New Email</a>
+
+<script>
+
+    function confirmDelete(emailId) {
+        var result = confirm("Are you sure you want to delete this email?");
+        if (result) {
+            window.location.href = "/DeleteEmail?emailid=" + emailId;
+        }
+    }
+</script>

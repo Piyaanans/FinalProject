@@ -30,7 +30,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <button id="login-submit" type="submit" class="btn btn-primary">Log in</button>
+                <button id="login-submit" type="submit" onclick="login()" class="btn btn-primary">Log in</button>
             </td>
         </tr>
     </table>
@@ -39,3 +39,9 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+<script>
+    function login() {
+        
+        alert("Login successful");
+    }
+</script>

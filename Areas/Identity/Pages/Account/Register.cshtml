@@ -57,12 +57,19 @@
         </tr>
         <tr>
             <td colspan="2">
-                <button id="registerSubmit" type="submit" class="btn btn-primary">Register</button>
+                <button id="registerSubmit" type="submit" onclick="Register()" class="btn btn-primary">Register</button>
             </td>
         </tr>
     </table>
 
 </form>
+
+<script>
+    function Register() {
+
+        alert("Registration successful");
+    }
+</script>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

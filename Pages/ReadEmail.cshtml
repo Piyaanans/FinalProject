@@ -1,0 +1,28 @@
+﻿@page
+@model FinalProject.Pages.ReadEmailModel
+@{
+    ViewData["Title"] = "Email";
+}
+
+<h1>Welcome to your Inbox, @User.Identity.Name!</h1>
+
+<div class="email-list">
+    @foreach (var email in Model.listEmails)
+    {
+        <div class="email-item">
+            <br>
+            <br>
+            <p><strong>From:</strong> @email.EmailSender</p>
+            <br>
+            <label for="EmailSubject" style="display: block; margin-bottom: 5px; margin-left: 30px; font-size: 24px;"><strong>Subjects :</strong></label>
+            <textarea style="margin-left: 30px;" id="EmailSubject" rows="1" cols="50" readonly>@email.EmailSubject</textarea>
+            <br>
+            <label for="emailMessageBox" style="display: block; margin-bottom: 5px; margin-left: 30px; font-size: 24px;"><strong>MessageBox :</strong></label>
+            <textarea style="margin-left: 30px;" id="emailMessageBox" rows="4" cols="50" readonly>@email.EmailMessage</textarea>
+        </div>
+    }
+    <div class="col-sm-5 d-grid">
+        <br>
+        <a style="margin-left: 150px;" class="btn btn-outline-primary" href="/Index" role="button">Cancel</a>
+    </div>
+</div>
