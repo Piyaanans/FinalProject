@@ -54,6 +54,17 @@ namespace FinalProject.Pages
                         }
 
                         command.ExecuteNonQuery();
+
+                        String SQL = "UPDATE emails " +
+                                     "SET emailisread=@emailisread " +
+                                     "WHERE emailid = @emailid";
+                        using (SqlCommand COMMAND = new SqlCommand(SQL, connection))
+                        {
+                            COMMAND.Parameters.AddWithValue("@emailisread", "1");
+                            COMMAND.Parameters.AddWithValue("@emailid", emailid);
+
+                            COMMAND.ExecuteNonQuery();
+                        }
                     }
                 }
             }
